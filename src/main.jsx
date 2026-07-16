@@ -14,6 +14,7 @@ import Lanyard from './Lanyard'
 import SplitText from './SplitText'
 import TextType from './TextType'
 import Stack from './Stack'
+import { isSupabaseConfigured, supabase } from './supabaseClient'
 
 const FEISHU_DOC_URL = 'https://scnkvd3lzoch.feishu.cn/docx/VqW4doj47oPJHdxKu9WcLTKmn5d?from=from_copylink'
 const ROBOT_REPORT_URL = '/reports/humanoid-robot-competitive-landscape-report.html'
@@ -43,7 +44,7 @@ const projects = [
   {
     type: '作品 1',
     title: '微信 AI 随手记',
-    summary: '微信一键转发的习惯：自动记录、智能分类、快速检索。',
+    summary: '微信一键转发的习惯：自动记录、智能分类、快速检索',
     content: [
       { kind: 'image', src: workSlide1, alt: '微信 AI 随手记展示页 1' },
       { kind: 'image', src: workSlide2, alt: '微信 AI 随手记展示页 2' }
@@ -51,8 +52,8 @@ const projects = [
   },
   {
     type: '作品 2',
-    title: 'Skills 开发',
-    summary: '聪明的设计风格、帖子抓取与市场调研。',
+    title: 'Design-generator',
+    summary: '一个聪明的设计风格抓取与生成skill & design-generator to Figma (附实操文档)',
     content: [
       {
         kind: 'composite',
@@ -74,8 +75,8 @@ const projects = [
   },
   {
     type: '作品 3',
-    title: '人形机器人行业竞品分析',
-    summary: '基于公开资料整理全球人形机器人企业分布、产品矩阵、商业化阶段与竞争定位。',
+    title: '竞品格局分析',
+    summary: 'Competitive-landscape skill——全球人形机器人企业分布、产品矩阵、商业化阶段与竞争定位',
     content: [
       { kind: 'image', src: workSlide6, alt: '人形机器人行业竞品分析过程介绍' },
       { kind: 'link', href: ROBOT_REPORT_URL, label: '打开完整 HTML 报告', note: '也可以在下方窗口内直接滑动阅读。' },
@@ -88,13 +89,23 @@ const projects = [
   }
 ]
 
-const photoPlaceholders = [
-  { title: '生活照片', note: '待上传', tone: 'green' },
-  { title: '咖啡探店', note: '待上传', tone: 'amber' },
-  { title: '徒步爬山', note: '待上传', tone: 'cyan' },
-  { title: '吉他弹唱', note: '待上传', tone: 'blue' },
-  { title: '篮球骑行', note: '待上传', tone: 'green' }
-]
+const photoModules = Object.entries(
+  import.meta.glob(
+    ['./assets/photos/*.{jpg,jpeg,png,webp,gif}', '!./assets/photos/6.jpg', '!./assets/photos/7.jpg', '!./assets/photos/9.jpg'],
+    {
+      eager: true,
+      import: 'default'
+    }
+  )
+)
+  .sort(([a], [b]) => a.localeCompare(b, undefined, { numeric: true }))
+
+const photoSources = photoModules
+  .filter(([file]) => {
+    const webpFile = file.replace(/\.(jpe?g|png)$/i, '.webp').toLowerCase()
+    return file.toLowerCase().endsWith('.webp') || !photoModules.some(([candidate]) => candidate.toLowerCase() === webpFile)
+  })
+  .map(([, src]) => src)
 
 function App() {
   const [activeProject, setActiveProject] = useState(null)
@@ -102,7 +113,10 @@ function App() {
   const viewerScrollRef = useRef(null)
   const [contactFlipped, setContactFlipped] = useState(false)
   const [liked, setLiked] = useState(() => localStorage.getItem('caimayo-liked') === 'true')
-  const [likes, setLikes] = useState(() => Number(localStorage.getItem('caimayo-like-count') || 128))
+  const [likes, setLikes] = useState(0)
+  const [likePending, setLikePending] = useState(false)
+  const [adviceStatus, setAdviceStatus] = useState('')
+  const [advicePending, setAdvicePending] = useState(false)
 
   useEffect(() => {
     if (!activeProject) return undefined
@@ -123,6 +137,24 @@ function App() {
   }, [activeProject])
 
   useEffect(() => {
+    if (!isSupabaseConfigured) return undefined
+
+    let cancelled = false
+
+    const loadLikes = async () => {
+      const { data, error } = await supabase.from('site_stats').select('likes').eq('id', 'main').maybeSingle()
+      if (cancelled || error || typeof data?.likes !== 'number') return
+      setLikes(data.likes)
+    }
+
+    loadLikes()
+
+    return () => {
+      cancelled = true
+    }
+  }, [])
+
+  useEffect(() => {
     setViewerExpanded(false)
     window.requestAnimationFrame(() => {
       if (viewerScrollRef.current) {
@@ -134,22 +166,64 @@ function App() {
   const likeLabel = useMemo(() => (liked ? '已收到你的好运' : '给我点赞'), [liked])
   const stackCards = useMemo(
     () =>
-      photoPlaceholders.map(item => (
-        <div className={`stack-photo-card ${item.tone}`} key={item.title}>
-          <span>{item.title}</span>
-          <small>{item.note}</small>
+      photoSources.map((src, index) => (
+        <div className="stack-photo-card" key={src}>
+          <img src={src} alt={`生活照片 ${index + 1}`} />
         </div>
       )),
     []
   )
 
-  const handleLike = () => {
-    if (liked) return
+  const handleLike = async () => {
+    if (liked || likePending) return
+
+    if (isSupabaseConfigured) {
+      setLikePending(true)
+      const { data, error } = await supabase.rpc('increment_like_count')
+      setLikePending(false)
+
+      if (!error && typeof data === 'number') {
+        setLiked(true)
+        setLikes(data)
+        localStorage.setItem('caimayo-liked', 'true')
+      }
+
+      return
+    }
+
     const next = likes + 1
     setLiked(true)
     setLikes(next)
     localStorage.setItem('caimayo-liked', 'true')
-    localStorage.setItem('caimayo-like-count', String(next))
+  }
+
+  const handleAdviceSubmit = async () => {
+    const field = document.querySelector('.message-panel textarea')
+    const content = field?.value.trim() || ''
+
+    if (!content) {
+      setAdviceStatus('请先写一点内容。')
+      return
+    }
+
+    if (!isSupabaseConfigured) {
+      setAdviceStatus('留言功能还没有连接 Supabase，先在 .env 里配置项目地址和 anon key。')
+      return
+    }
+
+    setAdvicePending(true)
+    setAdviceStatus('')
+
+    const { error } = await supabase.from('advice_messages').insert({ content })
+    setAdvicePending(false)
+
+    if (error) {
+      setAdviceStatus('提交失败，请稍后再试。')
+      return
+    }
+
+    if (field) field.value = ''
+    setAdviceStatus('已提交，感谢您的留言！')
   }
 
   return (
@@ -176,7 +250,7 @@ function App() {
             <SplitText text="hello,you!" />
           </h1>
           <p className="hero-lead">
-            <TextType text="欢迎来到CaiMayo的个人空间，希望能给你带来美好的心情~" />
+            <TextType text="欢迎来到CaiMayo的个人空间，希望能给您带来好心情~" />
           </p>
           <div className="hero-actions">
             <a className="button primary" href="#about">
@@ -207,7 +281,7 @@ function App() {
         <div className="intro-grid">
           <div>
             <h2>
-              <SplitText text="个人信息" />
+              <SplitText text="个人信息" triggerOnView />
             </h2>
             <p>
               深圳大学，研二在校，正处迷茫期~<br />
@@ -217,7 +291,7 @@ function App() {
             </p>
             <p className="self-comment">自我评价：自命不凡，却平平无奇。</p>
             <div className="like-card">
-              <button className="heart-button" type="button" onClick={handleLike} disabled={liked}>
+              <button className="heart-button" type="button" onClick={handleLike} disabled={liked || likePending}>
                 ♥
               </button>
               <div>
@@ -227,13 +301,13 @@ function App() {
             </div>
           </div>
 
-          <div className="stack-stage" aria-label="生活照片占位">
+          <div className="stack-stage" aria-label="生活照片">
             <Stack
               randomRotation
               sensitivity={170}
               sendToBackOnClick
               autoplay
-              autoplayDelay={2600}
+              autoplayDelay={1500}
               pauseOnHover
               mobileClickOnly
               cards={stackCards}
@@ -247,7 +321,7 @@ function App() {
           <div>
             <div className="section-kicker">EXPERIENCE</div>
             <h2>
-              <SplitText text="我的经历" />
+              <SplitText text="我的经历" triggerOnView />
             </h2>
           </div>
         </div>
@@ -271,7 +345,7 @@ function App() {
           <div>
             <div className="section-kicker">PORTFOLIO</div>
             <h2>
-              <SplitText text="作品集" />
+              <SplitText text="作品集" triggerOnView />
             </h2>
           </div>
         </div>
@@ -304,7 +378,7 @@ function App() {
           <div>
             <div className="section-kicker">MESSAGE</div>
             <h2>
-              <SplitText text="联系我" />
+              <SplitText text="联系我" triggerOnView />
             </h2>
           </div>
         </div>
@@ -331,10 +405,11 @@ function App() {
           <div className="contact-panel message-panel">
             <p className="section-kicker">ADVICE</p>
             <h2>想对我说</h2>
-            <textarea placeholder="欢迎留言、建议、合作想法，或者单纯祝我好运。" />
-            <button className="button primary" type="button">
+            <textarea placeholder="欢迎留言、建议，或单纯祝我好运！" />
+            <button className="button primary" type="button" onClick={handleAdviceSubmit} disabled={advicePending}>
               提交留言
             </button>
+            {adviceStatus && <p className="message-status">{adviceStatus}</p>}
           </div>
         </div>
       </section>

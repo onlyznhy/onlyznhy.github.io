@@ -152,12 +152,13 @@ function Band({
 
     if (!fixed.current || !band.current || !j1.current || !j2.current || !j3.current || !card.current) return
 
-    ;[j1, j2].forEach(ref => {
+    ;[j1, j2, j3].forEach(ref => {
       if (!ref.current.lerped) ref.current.lerped = new THREE.Vector3().copy(ref.current.translation())
       const clampedDistance = Math.max(0.1, Math.min(1, ref.current.lerped.distanceTo(ref.current.translation())))
-      ref.current.lerped.lerp(ref.current.translation(), delta * (minSpeed + clampedDistance * (maxSpeed - minSpeed)))
+      const smoothing = 1 - Math.exp(-delta * (minSpeed + clampedDistance * (maxSpeed - minSpeed)))
+      ref.current.lerped.lerp(ref.current.translation(), smoothing)
     })
-    curve.points[0].copy(j3.current.translation())
+    curve.points[0].copy(j3.current.lerped)
     curve.points[1].copy(j2.current.lerped)
     curve.points[2].copy(j1.current.lerped)
     curve.points[3].copy(fixed.current.translation())
