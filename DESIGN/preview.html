@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Personal Portfolio System Preview</title>
+    <link rel="stylesheet" href="./tokens.css" />
+    <style>
+      * { box-sizing: border-box; }
+      body { margin: 0; background: var(--color-canvas); color: var(--color-ink); font-family: var(--font-sans); }
+      .wrap { width: min(1120px, calc(100vw - 32px)); margin: 0 auto; padding: 56px 0; }
+      .hero { border: 1px solid var(--color-hairline); border-radius: var(--radius-lg); background: var(--color-surface); padding: 40px; box-shadow: var(--shadow-card); }
+      .eyebrow { color: var(--color-cyan); font-family: var(--font-mono); font-size: 12px; letter-spacing: .08em; }
+      h1 { font-size: var(--text-hero); line-height: .98; margin: 12px 0 18px; }
+      h2 { font-size: var(--text-display); line-height: var(--leading-tight); margin: 0 0 20px; }
+      p { color: var(--color-body); line-height: var(--leading-body); }
+      .grid { display: grid; gap: 16px; grid-template-columns: repeat(3, 1fr); margin-top: 24px; }
+      .card, .swatch, .component { background: var(--color-surface); border: 1px solid var(--color-hairline); border-radius: var(--radius-lg); padding: 24px; }
+      .swatch b { display: block; margin-top: 54px; }
+      .swatch span { color: var(--color-muted); font-family: var(--font-mono); font-size: 12px; }
+      .ink { background: var(--color-ink); color: #fff; }
+      .cyan { background: var(--color-cyan-soft); }
+      .amber { background: var(--color-amber-soft); }
+      .blue { background: var(--color-blue-soft); }
+      .button { display: inline-flex; min-height: 46px; align-items: center; justify-content: center; padding: 0 18px; border-radius: var(--radius-md); font-weight: 650; margin-right: 8px; }
+      .primary { background: var(--color-primary); color: var(--color-on-primary); }
+      .secondary { background: var(--color-surface); border: 1px solid var(--color-hairline); }
+      .chip { display: inline-block; background: var(--color-surface-soft); border: 1px solid var(--color-hairline); border-radius: var(--radius-sm); padding: 7px 9px; margin: 4px; font-size: 13px; }
+      .screen { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+      @media (max-width: 760px) { .grid, .screen { grid-template-columns: 1fr; } .hero { padding: 24px; } }
+    </style>
+  </head>
+  <body>
+    <main class="wrap">
+      <section class="hero">
+        <div class="eyebrow">PORTFOLIO SYSTEM</div>
+        <h1>Bright, restrained, thinking-first portfolio.</h1>
+        <p>Reusable design language for a student job seeker and blogger focused on product, supply chain, and tools.</p>
+        <a class="button primary">Primary CTA</a><a class="button secondary">Secondary CTA</a>
+      </section>
+      <section class="wrap">
+        <h2>Tokens</h2>
+        <div class="grid">
+          <div class="swatch ink"><b>Ink</b><span>#17191c</span></div>
+          <div class="swatch cyan"><b>Cyan soft</b><span>#dff4f7</span></div>
+          <div class="swatch amber"><b>Amber soft</b><span>#fff1d6</span></div>
+        </div>
+      </section>
+      <section>
+        <h2>Components</h2>
+        <div class="grid">
+          <div class="component"><div class="eyebrow">METHOD</div><h3>Product thinking</h3><p>Define user, task, constraint, and metric before solution.</p><span class="chip">JTBD</span><span class="chip">PRD</span></div>
+          <div class="component"><div class="eyebrow">SUPPLY CHAIN</div><h3>Flow mapping</h3><p>Turn information, goods, and capital into a visible discussion map.</p><span class="chip">Inventory</span><span class="chip">Fulfillment</span></div>
+          <div class="component"><div class="eyebrow">TOOLS</div><h3>Reusable workflow</h3><p>Use AI and knowledge tools to create repeatable output systems.</p><span class="chip">AI</span><span class="chip">Notion</span></div>
+        </div>
+      </section>
+      <section class="wrap">
+        <h2>Page Grammar</h2>
+        <div class="screen">
+          <div class="card"><div class="eyebrow">SELECTED WORK</div><h3>Large project cards</h3><p>Each card explains category, problem, thinking lens, and next action.</p></div>
+          <div class="card"><div class="eyebrow">CONTACT</div><h3>Closing CTA</h3><p>Use one direct contact prompt and one credibility quote.</p></div>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

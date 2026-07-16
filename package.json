@@ -1,0 +1,23 @@
+{
+  "name": "personal-portfolio-web",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "build": "vite build",
+    "preview": "vite preview --host 127.0.0.1"
+  },
+  "dependencies": {
+    "@react-three/drei": "^10.7.7",
+    "@react-three/fiber": "^9.6.1",
+    "@react-three/rapier": "^2.2.0",
+    "@vitejs/plugin-react": "^4.4.1",
+    "meshline": "^3.3.1",
+    "motion": "^12.42.2",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "three": "^0.185.1",
+    "vite": "^6.3.5"
+  }
+}
