@@ -364,6 +364,12 @@ h3 {
   width: 44px;
 }
 
+.heart-button svg {
+  fill: currentColor;
+  height: 22px;
+  width: 22px;
+}
+
 .heart-button:disabled {
   cursor: default;
   opacity: 0.72;
