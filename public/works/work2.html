@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Work 2</title>
+  <style>* { box-sizing: border-box; }
+html, body { margin: 0; min-height: 100%; background: #fff; }
+body { font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+.deck { display: grid; gap: 14px; justify-items: center; margin: 0; padding: 10px 0 14px; width: 100%; }
+.slide { aspect-ratio: 16 / 9; background: #fff; overflow: hidden; position: relative; width: min(100%, calc((100vh - 24px) * 16 / 9)); }
+.slide > img { display: block; height: 100%; object-fit: cover; width: 100%; }
+.slide video, .hotlink { height: calc(var(--h) * 100%); left: calc(var(--x) * 100%); position: absolute; top: calc(var(--y) * 100%); width: calc(var(--w) * 100%); }
+.slide video { background: #000; object-fit: cover; z-index: 2; }
+.hotlink { z-index: 3; }
+.hotlink:focus-visible { outline: 3px solid #2563eb; outline-offset: -3px; }</style>
+</head>
+<body>
+  <main class="deck">
+    <section class="slide" id="slide-01">
+      <img src="assets/portfolio-slide-06.png" alt="Slide 1" loading="lazy">
+    </section>
+    <section class="slide" id="slide-02">
+      <img src="assets/portfolio-slide-07.png" alt="Slide 2" loading="lazy">
+      <video src="assets/work2-demo.mp4" autoplay muted loop playsinline controls style="--x:0.01744792;--y:0.20120370;--w:0.45447917;--h:0.52879630"></video>
+    </section>
+    <section class="slide" id="slide-03">
+      <img src="assets/portfolio-slide-08.png" alt="Slide 3" loading="lazy">
+    </section>
+    <section class="slide" id="slide-04">
+      <img src="assets/portfolio-slide-09.png" alt="Slide 4" loading="lazy">
+      <a class="hotlink" href="https://scnkvd3lzoch.feishu.cn/docx/VqW4doj47oPJHdxKu9WcLTKmn5d?from=from_copylink" target="_blank" rel="noopener" aria-label="Open Feishu document" style="--x:0.02041667;--y:0.94490741;--w:0.86473958;--h:0.04888889"></a>
+    </section>
+    <section class="slide" id="slide-05">
+      <img src="assets/portfolio-slide-10.png" alt="Slide 5" loading="lazy">
+      <a class="hotlink" href="https://onlyznhy.github.io/" target="_blank" rel="noopener" aria-label="Open personal website" style="--x:0.54979167;--y:0.13750000;--w:0.12197917;--h:0.04018519"></a>
+    </section>
+  </main>
+  <script>
+    const setPlaybackSpeed = video => {
+      video.defaultPlaybackRate = 2;
+      video.playbackRate = 2;
+    };
+    document.querySelectorAll('video').forEach(video => {
+      setPlaybackSpeed(video);
+      video.addEventListener('loadedmetadata', () => setPlaybackSpeed(video));
+      video.addEventListener('play', () => setPlaybackSpeed(video));
+    });
+  </script>
+</body>
+</html>

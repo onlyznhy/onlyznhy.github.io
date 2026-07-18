@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Work 1</title>
+  <style>* { box-sizing: border-box; }
+html, body { margin: 0; min-height: 100%; background: #fff; }
+body { font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+.deck { display: grid; gap: 14px; justify-items: center; margin: 0; padding: 10px 0 14px; width: 100%; }
+.slide { aspect-ratio: 16 / 9; background: #fff; overflow: hidden; position: relative; width: min(100%, calc((100vh - 24px) * 16 / 9)); }
+.slide > img { display: block; height: 100%; object-fit: cover; width: 100%; }
+.slide video, .hotlink { height: calc(var(--h) * 100%); left: calc(var(--x) * 100%); position: absolute; top: calc(var(--y) * 100%); width: calc(var(--w) * 100%); }
+.slide video { background: #000; object-fit: cover; z-index: 2; }
+.hotlink { z-index: 3; }
+.hotlink:focus-visible { outline: 3px solid #2563eb; outline-offset: -3px; }</style>
+</head>
+<body>
+  <main class="deck">
+    <section class="slide" id="slide-01">
+      <img src="assets/portfolio-slide-02.png" alt="Slide 1" loading="lazy">
+    </section>
+    <section class="slide" id="slide-02">
+      <img src="assets/portfolio-slide-03.png" alt="Slide 2" loading="lazy">
+    </section>
+    <section class="slide" id="slide-03">
+      <img src="assets/portfolio-slide-04.png" alt="Slide 3" loading="lazy">
+    </section>
+    <section class="slide" id="slide-04">
+      <img src="assets/portfolio-slide-05.png" alt="Slide 4" loading="lazy">
+      <video src="assets/work1-demo.mp4" autoplay muted loop playsinline controls style="--x:0.22140625;--y:0.13824074;--w:0.62182292;--h:0.81203704"></video>
+    </section>
+  </main>
+  <script>
+    const setPlaybackSpeed = video => {
+      video.defaultPlaybackRate = 2;
+      video.playbackRate = 2;
+    };
+    document.querySelectorAll('video').forEach(video => {
+      setPlaybackSpeed(video);
+      video.addEventListener('loadedmetadata', () => setPlaybackSpeed(video));
+      video.addEventListener('play', () => setPlaybackSpeed(video));
+    });
+  </script>
+</body>
+</html>

@@ -8,3 +8,19 @@ output/
 .env.*
 !.env.example
 *.log
+
+# Local experiment/export files that are not part of the portfolio site deploy.
+suishouji.zip
+随手记/
+supabase/assistant-schema.sql
+supabase/edge-functions-guide.md
+supabase/site-events.sql
+supabase/functions/
+
+# Superseded generated portfolio pages/assets. Keep the flat work1/work2/work3 pages.
+public/works/all/
+public/works/work-1/
+public/works/work-2/
+public/works/work-3/
+public/works/assets/slide-*.png
+public/works/assets/work-*-demo.mp4

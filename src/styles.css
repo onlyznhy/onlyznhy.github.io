@@ -929,18 +929,18 @@ body.modal-open {
 }
 
 .viewer-scroll {
-  background: #f5f6f7;
+  background: #fff;
   display: flex;
   flex-direction: column;
   flex: 1 1 auto;
-  gap: 18px;
+  gap: 0;
   overflow-y: auto;
   overscroll-behavior: contain;
-  padding: 22px;
+  padding: 0;
 }
 
 .project-viewer.is-expanded .viewer-scroll {
-  padding-inline: max(22px, calc((100vw - 1280px) / 2));
+  padding-inline: 0;
 }
 
 .viewer-intro {
@@ -1009,21 +1009,31 @@ body.modal-open {
 }
 
 .work-report-frame {
-  height: 76vh;
-  min-height: 620px;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  flex: 1 0 auto;
+  height: calc(88vh - 146px);
+  min-height: 720px;
+}
+
+.project-viewer.is-expanded .work-report-frame {
+  height: calc(100vh - 117px);
+  min-height: calc(100vh - 117px);
 }
 
 .work-resource-link {
   align-items: center;
   background: var(--color-surface);
-  border: 1px solid var(--color-hairline);
-  border-radius: var(--radius-md);
-  box-shadow: 0 10px 32px rgba(18, 24, 31, 0.08);
+  border: 0;
+  border-bottom: 1px solid var(--color-hairline);
+  border-radius: 0;
+  box-shadow: none;
   color: var(--color-ink);
   display: flex;
   justify-content: space-between;
   gap: 18px;
-  padding: 18px 20px;
+  padding: 18px 24px;
   text-decoration: none;
 }
 

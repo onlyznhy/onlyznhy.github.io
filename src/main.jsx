@@ -3,21 +3,15 @@ import { createRoot } from 'react-dom/client'
 import './styles.css'
 import heroSystemMap from './assets/hero-system-map.webp'
 import caimayoLogo from './assets/caimayo-logo.webp'
-import workSlide1 from './assets/portfolio/work-slide-1.png'
-import workSlide2 from './assets/portfolio/work-slide-2.png'
-import workSlide3 from './assets/portfolio/work-slide-3.png'
-import workSlide4 from './assets/portfolio/work-slide-4.png'
-import workSlide5 from './assets/portfolio/work-slide-5.png'
-import workSlide6 from './assets/portfolio/work-slide-6.png'
-import workSlide3Demo from './assets/portfolio/work-slide-3-demo.gif'
 import Lanyard from './Lanyard'
 import SplitText from './SplitText'
 import TextType from './TextType'
 import Stack from './Stack'
 import { isSupabaseConfigured, supabase } from './supabaseClient'
 
-const FEISHU_DOC_URL = 'https://scnkvd3lzoch.feishu.cn/docx/VqW4doj47oPJHdxKu9WcLTKmn5d?from=from_copylink'
-const ROBOT_REPORT_URL = '/reports/humanoid-robot-competitive-landscape-report.html'
+const WORK_1_URL = '/works/work1.html'
+const WORK_2_URL = '/works/work2.html'
+const WORK_3_URL = '/works/work3.html'
 
 const experiences = [
   {
@@ -43,47 +37,37 @@ const experiences = [
 const projects = [
   {
     type: '作品 1',
-    title: '微信 AI 随手记',
-    summary: '微信一键转发的习惯：自动记录、智能分类、快速检索',
+    title: '微信 AI 私人助理',
+    summary: '微信对话窗口为前端，转发随手记、消息自动推送，24在线服务',
     content: [
-      { kind: 'image', src: workSlide1, alt: '微信 AI 随手记展示页 1' },
-      { kind: 'image', src: workSlide2, alt: '微信 AI 随手记展示页 2' }
+      {
+        kind: 'iframe',
+        src: WORK_1_URL,
+        title: '微信 AI 私人助理'
+      }
     ]
   },
   {
     type: '作品 2',
     title: 'Design-generator',
-    summary: '一个聪明的设计风格抓取与生成skill & design-generator to Figma (附实操文档)',
+    summary: '一个简洁的设计风格抓取与生成skill & design-generator to Figma (附实操文档)',
     content: [
       {
-        kind: 'composite',
-        src: workSlide3,
-        alt: 'Skills 开发展示页 1',
-        label: 'PPT 第 3 页',
-        overlays: [
-          {
-            src: workSlide3Demo,
-            alt: 'Skills 开发动态演示',
-            style: { left: '2.64%', top: '20.87%', width: '43.85%', height: '58.46%' }
-          }
-        ]
-      },
-      { kind: 'image', src: workSlide4, alt: 'Skills 开发展示页 2' },
-      { kind: 'image', src: workSlide5, alt: 'Skills 开发展示页 3' },
-      { kind: 'link', href: FEISHU_DOC_URL, label: '打开完整飞书文档', note: '第 5 页相关文档会在新标签页打开。' }
+        kind: 'iframe',
+        src: WORK_2_URL,
+        title: 'Design-generator'
+      }
     ]
   },
   {
     type: '作品 3',
-    title: '竞品格局分析',
-    summary: 'Competitive-landscape skill——全球人形机器人企业分布、产品矩阵、商业化阶段与竞争定位',
+    title: 'Post-capture',
+    summary: '帖子抓取 & 竞品分析 skill',
     content: [
-      { kind: 'image', src: workSlide6, alt: '人形机器人行业竞品分析过程介绍' },
-      { kind: 'link', href: ROBOT_REPORT_URL, label: '打开完整 HTML 报告', note: '也可以在下方窗口内直接滑动阅读。' },
       {
         kind: 'iframe',
-        src: ROBOT_REPORT_URL,
-        title: '人形机器人行业竞品分析报告'
+        src: WORK_3_URL,
+        title: 'Post-capture'
       }
     ]
   }
@@ -284,10 +268,11 @@ function App() {
               <SplitText text="个人信息" triggerOnView />
             </h2>
             <p>
-              深圳大学，研二在校，正处迷茫期~<br />
+              深圳大学，研二在校，工程管理系~<br />
+              无人机应用与二次开发方向~<br />
               喜欢社交，也喜欢独处；<br />
               喜欢咖啡探店，也喜欢深夜小酌。<br />
-              兴趣爱好广泛，徒步爬山、吉他弹唱、篮球羽毛球、骑行跑步~
+              徒步爬山、吉他弹唱、骑行跑步~
             </p>
             <p className="self-comment">自我评价：自命不凡，却平平无奇。</p>
             <div className="like-card">
