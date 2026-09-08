@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Work 4</title>
+  <style>
+:root {
+  color: #111827;
+  background: #f6f7f9;
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: #f6f7f9; }
+.topbar {
+  align-items: center;
+  backdrop-filter: blur(18px);
+  background: rgba(255, 255, 255, 0.88);
+  border-bottom: 1px solid rgba(17, 24, 39, 0.08);
+  display: flex;
+  gap: 16px;
+  justify-content: space-between;
+  left: 0;
+  padding: 14px clamp(18px, 4vw, 48px);
+  position: sticky;
+  right: 0;
+  top: 0;
+  z-index: 20;
+}
+.brand { min-width: 0; }
+.brand strong { display: block; font-size: 18px; }
+.nav { display: flex; flex-wrap: wrap; gap: 8px; justify-content: flex-end; }
+.nav a {
+  border: 1px solid rgba(17, 24, 39, 0.1);
+  border-radius: 999px;
+  color: #111827;
+  font-size: 13px;
+  padding: 8px 12px;
+  text-decoration: none;
+}
+.deck { display: grid; gap: clamp(18px, 3vw, 34px); margin: 0 auto; max-width: 1180px; padding: clamp(18px, 4vw, 42px); }
+.slide {
+  aspect-ratio: 16 / 9;
+  background: #fff;
+  border: 1px solid rgba(17, 24, 39, 0.08);
+  border-radius: 14px;
+  box-shadow: 0 20px 50px rgba(15, 23, 42, 0.12);
+  overflow: hidden;
+  position: relative;
+}
+.slide > img { display: block; height: 100%; object-fit: cover; width: 100%; }
+.hotlink {
+  border-radius: 10px;
+  height: calc(var(--h) * 100%);
+  left: calc(var(--x) * 100%);
+  position: absolute;
+  top: calc(var(--y) * 100%);
+  width: calc(var(--w) * 100%);
+  z-index: 3;
+}
+.hotlink:focus-visible { outline: 3px solid #2563eb; outline-offset: 3px; }
+@media (max-width: 760px) {
+  .topbar { align-items: flex-start; flex-direction: column; }
+  .nav { justify-content: flex-start; }
+  .deck { padding: 14px; }
+  .slide { border-radius: 8px; }
+}
+</style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <strong>Work 4</strong>
+    </div>
+    <nav class="nav" aria-label="Works navigation">
+      <a href="../work-1/index.html">Work 1</a>
+      <a href="../work-2/index.html">Work 2</a>
+      <a href="../work-3/index.html">Work 3</a>
+      <a href="../work-4/index.html">Work 4</a>
+      <a href="../all/index.html">Portfolio</a>
+      <a href="../../">Back to site</a>
+    </nav>
+  </header>
+  <main class="deck">
+    <section class="slide" id="slide-13">
+      <img src="../assets/portfolio-slide-13.png" alt="Slide 13" loading="lazy">
+      <a class="hotlink" href="https://github.com/onlyznhy/OMSflow" target="_blank" rel="noopener" aria-label="Open OMSflow source code" style="--x:0.01630208;--y:0.93708382;--w:0.41666667;--h:0.04018519"></a>
+    </section>
+    <section class="slide" id="slide-14">
+      <img src="../assets/portfolio-slide-14.png" alt="Slide 14" loading="lazy">
+    </section>
+    <section class="slide" id="slide-15">
+      <img src="../assets/portfolio-slide-15.png" alt="Slide 15" loading="lazy">
+    </section>
+    <section class="slide" id="slide-16">
+      <img src="../assets/portfolio-slide-16.png" alt="Slide 16" loading="lazy">
+    </section>
+  </main>
+</body>
+</html>
