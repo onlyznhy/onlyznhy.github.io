@@ -94,18 +94,31 @@ body { margin: 0; background: #f6f7f9; }
     </section>
     <section class="slide" id="slide-20">
       <img src="../assets/portfolio-slide-20.png" alt="Slide 20" loading="lazy">
-      <video src="../assets/work5-demo.mp4" autoplay muted loop playsinline controls style="--x:0.03979167;--y:0.09361053;--w:0.87444119;--h:0.88134441"></video>
+      <video src="../assets/work5-demo.mp4" autoplay muted loop playsinline preload="auto" controls style="--x:0.03979167;--y:0.09361053;--w:0.87444119;--h:0.88134441"></video>
     </section>
   </main>
   <script>
-    const setPlaybackSpeed = video => {
-      video.defaultPlaybackRate = 2;
-      video.playbackRate = 2;
+    const PLAYBACK_RATE = 2.2;
+    const startVideo = video => {
+      video.muted = true;
+      video.defaultMuted = true;
+      video.playsInline = true;
+      video.defaultPlaybackRate = PLAYBACK_RATE;
+      video.playbackRate = PLAYBACK_RATE;
+      const playPromise = video.play();
+      if (playPromise) playPromise.catch(() => {});
     };
     document.querySelectorAll('video').forEach(video => {
-      setPlaybackSpeed(video);
-      video.addEventListener('loadedmetadata', () => setPlaybackSpeed(video));
-      video.addEventListener('play', () => setPlaybackSpeed(video));
+      startVideo(video);
+      video.addEventListener('loadedmetadata', () => startVideo(video));
+      video.addEventListener('canplay', () => startVideo(video));
+      video.addEventListener('play', () => startVideo(video));
+    });
+    window.addEventListener('load', () => {
+      requestAnimationFrame(() => document.querySelectorAll('video').forEach(startVideo));
+    });
+    document.addEventListener('visibilitychange', () => {
+      if (!document.hidden) document.querySelectorAll('video').forEach(startVideo);
     });
   </script>
 </body>
