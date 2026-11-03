@@ -10,8 +10,8 @@ body { font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-s
 .deck { display: grid; gap: 14px; justify-items: center; margin: 0; padding: 16px 18px 20px; width: 100%; }
 .slide { aspect-ratio: 16 / 9; background: #fff; overflow: hidden; position: relative; width: min(92%, calc((100vh - 48px) * 16 / 9)); }
 .slide > img { display: block; height: 100%; object-fit: cover; width: 100%; }
-.slide video, .hotlink { height: calc(var(--h) * 100%); left: calc(var(--x) * 100%); position: absolute; top: calc(var(--y) * 100%); width: calc(var(--w) * 100%); }
-.slide video { background: #000; object-fit: cover; z-index: 2; }
+.slide .demo-gif, .hotlink { height: calc(var(--h) * 100%); left: calc(var(--x) * 100%); position: absolute; top: calc(var(--y) * 100%); width: calc(var(--w) * 100%); }
+.slide .demo-gif { object-fit: fill; z-index: 2; }
 .hotlink { z-index: 3; }
 .hotlink:focus-visible { outline: 3px solid #2563eb; outline-offset: -3px; }</style>
 </head>
@@ -22,7 +22,7 @@ body { font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-s
     </section>
     <section class="slide" id="slide-02">
       <img src="assets/work2-current-07.png" alt="Slide 2" loading="lazy">
-      <video src="assets/work2-demo.mp4" autoplay muted loop playsinline controls style="--x:0.01744792;--y:0.20120370;--w:0.45447917;--h:0.52879630"></video>
+      <img class="demo-gif" src="assets/work2-demo-2x.gif" alt="Design generator demonstration" loading="lazy" style="--x:0.01744792;--y:0.20120370;--w:0.45447917;--h:0.52879630">
     </section>
     <section class="slide" id="slide-03">
       <img src="assets/work2-current-08.png" alt="Slide 3" loading="lazy">
@@ -43,16 +43,5 @@ body { font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-s
       <a class="hotlink" href="https://onlyznhy.github.io/works/work6s.html" target="_blank" rel="noopener" aria-label="Open logistics monitoring demo" style="--x:0.52640625;--y:0.12750000;--w:0.41859375;--h:0.05018519"></a>
     </section>
   </main>
-  <script>
-    const setPlaybackSpeed = video => {
-      video.defaultPlaybackRate = 2;
-      video.playbackRate = 2;
-    };
-    document.querySelectorAll('video').forEach(video => {
-      setPlaybackSpeed(video);
-      video.addEventListener('loadedmetadata', () => setPlaybackSpeed(video));
-      video.addEventListener('play', () => setPlaybackSpeed(video));
-    });
-  </script>
 </body>
 </html>
