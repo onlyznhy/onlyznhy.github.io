@@ -4,113 +4,126 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Portfolio</title>
-  <style>* { box-sizing: border-box; }
+  <style>
+* { box-sizing: border-box; }
 html, body { margin: 0; min-height: 100%; background: #fff; }
 body { font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
 .deck { display: grid; gap: 14px; justify-items: center; margin: 0; padding: 16px 18px 20px; width: 100%; }
 .slide { aspect-ratio: 16 / 9; background: #fff; overflow: hidden; position: relative; width: min(92%, calc((100vh - 48px) * 16 / 9)); }
 .slide > img { display: block; height: 100%; object-fit: cover; width: 100%; }
-.slide video, .hotlink { height: calc(var(--h) * 100%); left: calc(var(--x) * 100%); position: absolute; top: calc(var(--y) * 100%); width: calc(var(--w) * 100%); }
-.slide video { background: #000; object-fit: cover; z-index: 2; }
+.slide video, .slide .animated, .hotlink { height: calc(var(--h) * 100%); left: calc(var(--x) * 100%); position: absolute; top: calc(var(--y) * 100%); width: calc(var(--w) * 100%); }
+.slide video, .slide .animated { object-fit: cover; z-index: 2; }
+.slide video { background: #000; }
 .hotlink { z-index: 3; }
-.hotlink:focus-visible { outline: 3px solid #2563eb; outline-offset: -3px; }</style>
+.hotlink:focus-visible { outline: 3px solid #2563eb; outline-offset: -3px; }
+  </style>
 </head>
 <body>
   <main class="deck">
     <section class="slide" id="slide-01">
-      <img src="assets/portfolio-slide-01.png" alt="Slide 1" loading="lazy">
+      <img src="assets/portfolio-current-01.png" alt="Slide 1" fetchpriority="high">
+      <a class="hotlink" href="https://onlyznhy.github.io" target="_blank" rel="noopener" aria-label="Open personal website" style="--x:0.70198695;--y:0.85629628;--w:0.21935417;--h:0.04444444"></a>
+      <a class="hotlink" href="https://onlyznhy.github.io/works/portfolio.html" target="_blank" rel="noopener" aria-label="Open portfolio" style="--x:0.57057552;--y:0.90074073;--w:0.40401557;--h:0.04444444"></a>
     </section>
     <section class="slide" id="slide-02">
-      <img src="assets/portfolio-slide-02.png" alt="Slide 2" loading="lazy">
+      <img src="assets/portfolio-current-02.png" alt="Slide 2" loading="lazy">
+      <a class="hotlink" href="#slide-24" aria-label="Go to Page 24" style="--x:0.63403651;--y:0.75703701;--w:0.05647917;--h:0.04000000"></a>
+      <a class="hotlink" href="#slide-20" aria-label="Go to Page 20" style="--x:0.50708332;--y:0.64592590;--w:0.05647917;--h:0.04000000"></a>
+      <a class="hotlink" href="#slide-14" aria-label="Go to Page 14" style="--x:0.63746357;--y:0.53481479;--w:0.05647917;--h:0.04000000"></a>
+      <a class="hotlink" href="#slide-07" aria-label="Go to Page 7" style="--x:0.71384900;--y:0.31259260;--w:0.04778125;--h:0.04000000"></a>
+      <a class="hotlink" href="#slide-03" aria-label="Go to Page 3" style="--x:0.41856775;--y:0.20148149;--w:0.04778125;--h:0.04000000"></a>
     </section>
     <section class="slide" id="slide-03">
-      <img src="assets/portfolio-slide-03.png" alt="Slide 3" loading="lazy">
+      <img src="assets/portfolio-current-03.png" alt="Slide 3" loading="lazy">
     </section>
     <section class="slide" id="slide-04">
-      <img src="assets/portfolio-slide-04.png" alt="Slide 4" loading="lazy">
+      <img src="assets/portfolio-current-04.png" alt="Slide 4" loading="lazy">
     </section>
     <section class="slide" id="slide-05">
-      <img src="assets/portfolio-slide-05.png" alt="Slide 5" loading="lazy">
-      <video src="assets/work1-demo.mp4" autoplay muted loop playsinline controls style="--x:0.22140625;--y:0.13824074;--w:0.62182292;--h:0.81203704"></video>
+      <img src="assets/portfolio-current-05.png" alt="Slide 5" loading="lazy">
     </section>
     <section class="slide" id="slide-06">
-      <img src="assets/portfolio-slide-06.png" alt="Slide 6" loading="lazy">
+      <img src="assets/portfolio-current-06.png" alt="Slide 6" loading="lazy">
+      <video src="assets/work1-demo.mp4" autoplay muted loop playsinline preload="auto" controls data-playback-rate="2" style="--x:0.22140625;--y:0.13824074;--w:0.62182292;--h:0.81203704"></video>
     </section>
     <section class="slide" id="slide-07">
-      <img src="assets/portfolio-slide-07.png" alt="Slide 7" loading="lazy">
-      <video src="assets/work2-demo.mp4" autoplay muted loop playsinline controls style="--x:0.01744792;--y:0.20120370;--w:0.45447917;--h:0.52879630"></video>
+      <img src="assets/portfolio-current-07.png" alt="Slide 7" loading="lazy">
     </section>
     <section class="slide" id="slide-08">
-      <img src="assets/portfolio-slide-08.png" alt="Slide 8" loading="lazy">
+      <img src="assets/portfolio-current-08.png" alt="Slide 8" loading="lazy">
+      <video src="assets/work2-demo.mp4" autoplay muted loop playsinline preload="auto" controls data-playback-rate="2" style="--x:0.01744792;--y:0.20120370;--w:0.45447917;--h:0.52879630"></video>
     </section>
     <section class="slide" id="slide-09">
-      <img src="assets/portfolio-slide-09.png" alt="Slide 9" loading="lazy">
-      <a class="hotlink" href="https://scnkvd3lzoch.feishu.cn/docx/VqW4doj47oPJHdxKu9WcLTKmn5d?from=from_copylink" target="_blank" rel="noopener" aria-label="Open Feishu document" style="--x:0.02041667;--y:0.94490741;--w:0.86473958;--h:0.04888889"></a>
+      <img src="assets/portfolio-current-09.png" alt="Slide 9" loading="lazy">
     </section>
     <section class="slide" id="slide-10">
-      <img src="assets/portfolio-slide-10.png" alt="Slide 10" loading="lazy">
-      <a class="hotlink" href="https://onlyznhy.github.io/" target="_blank" rel="noopener" aria-label="Open personal website" style="--x:0.54979167;--y:0.13750000;--w:0.12197917;--h:0.04018519"></a>
-    </section>
-    <section class="slide" id="work2-slide-11">
-      <img src="assets/work2-slide-11.png" alt="Work 2 - Slide 6" loading="lazy">
-    </section>
-    <section class="slide" id="work2-slide-12">
-      <img src="assets/work2-slide-12.png" alt="Work 2 - Slide 7" loading="lazy">
-      <a class="hotlink" href="https://onlyznhy.github.io/works/work6s.html" target="_blank" rel="noopener" aria-label="Open logistics monitoring demo" style="--x:0.52640625;--y:0.12750000;--w:0.41859375;--h:0.05018519"></a>
+      <img src="assets/portfolio-current-10.png" alt="Slide 10" loading="lazy">
+      <a class="hotlink" href="https://scnkvd3lzoch.feishu.cn/docx/VqW4doj47oPJHdxKu9WcLTKmn5d?from=from_copylink" target="_blank" rel="noopener" aria-label="Open Feishu document" style="--x:0.02041667;--y:0.94490741;--w:0.86473958;--h:0.04888889"></a>
     </section>
     <section class="slide" id="slide-11">
-      <img src="assets/work3-slide-11.png" alt="Slide 11" loading="lazy">
+      <img src="assets/portfolio-current-11.png" alt="Slide 11" loading="lazy">
+      <a class="hotlink" href="https://onlyznhy.github.io/" target="_blank" rel="noopener" aria-label="Open personal website" style="--x:0.54979167;--y:0.13750000;--w:0.12197917;--h:0.04018519"></a>
     </section>
     <section class="slide" id="slide-12">
-      <img src="assets/work3-slide-12.png" alt="Slide 12" loading="lazy">
-      <a class="hotlink" href="https://onlyznhy.github.io/reports/humanoid-robot-competitive-landscape-report.html" target="_blank" rel="noopener" aria-label="Open HTML report" style="--x:0.01578125;--y:0.95111111;--w:0.86473958;--h:0.04888889"></a>
+      <img src="assets/portfolio-current-12.png" alt="Slide 12" loading="lazy">
     </section>
     <section class="slide" id="slide-13">
-      <img src="assets/portfolio-slide-13.png" alt="Slide 13" loading="lazy">
-      <a class="hotlink" href="https://github.com/onlyznhy/OMSflow" target="_blank" rel="noopener" aria-label="Open OMSflow source code" style="--x:0.01630208;--y:0.93708382;--w:0.41666667;--h:0.04018519"></a>
+      <img src="assets/portfolio-current-13.png" alt="Slide 13" loading="lazy">
+      <a class="hotlink" href="https://onlyznhy.github.io/works/work6s.html" target="_blank" rel="noopener" aria-label="Open logistics monitoring demo" style="--x:0.52640625;--y:0.12750000;--w:0.41859375;--h:0.05018519"></a>
     </section>
     <section class="slide" id="slide-14">
-      <img src="assets/portfolio-slide-14.png" alt="Slide 14" loading="lazy">
+      <img src="assets/portfolio-current-14.png" alt="Slide 14" loading="lazy">
     </section>
     <section class="slide" id="slide-15">
-      <img src="assets/portfolio-slide-15.png" alt="Slide 15" loading="lazy">
+      <img src="assets/portfolio-current-15.png" alt="Slide 15" loading="lazy">
+      <a class="hotlink" href="https://onlyznhy.github.io/reports/humanoid-robot-competitive-landscape-report.html" target="_blank" rel="noopener" aria-label="Open HTML report" style="--x:0.01578125;--y:0.95111111;--w:0.86473958;--h:0.04888889"></a>
     </section>
     <section class="slide" id="slide-16">
-      <img src="assets/portfolio-slide-16.png" alt="Slide 16" loading="lazy">
+      <img src="assets/portfolio-current-16.png" alt="Slide 16" loading="lazy">
+      <a class="hotlink" href="https://github.com/onlyznhy/OMSflow" target="_blank" rel="noopener" aria-label="Open OMSflow source code" style="--x:0.01630208;--y:0.93699081;--w:0.41666667;--h:0.04018519"></a>
     </section>
     <section class="slide" id="slide-17">
-      <img src="assets/portfolio-slide-17.png" alt="Slide 17" loading="lazy">
+      <img src="assets/portfolio-current-17.png" alt="Slide 17" loading="lazy">
     </section>
     <section class="slide" id="slide-18">
-      <img src="assets/portfolio-slide-18.png" alt="Slide 18" loading="lazy">
+      <img src="assets/portfolio-current-18.png" alt="Slide 18" loading="lazy">
     </section>
     <section class="slide" id="slide-19">
-      <img src="assets/portfolio-slide-19.png" alt="Slide 19" loading="lazy">
+      <img src="assets/portfolio-current-19.png" alt="Slide 19" loading="lazy">
     </section>
     <section class="slide" id="slide-20">
-      <img src="assets/portfolio-slide-20.png" alt="Slide 20" loading="lazy">
-      <video src="assets/work5-demo.mp4" autoplay muted loop playsinline preload="auto" controls data-playback-rate="2.2" style="--x:0.03979167;--y:0.09361053;--w:0.87444119;--h:0.88134441"></video>
+      <img src="assets/portfolio-current-20.png" alt="Slide 20" loading="lazy">
     </section>
     <section class="slide" id="slide-21">
-      <img src="assets/portfolio-slide-21.png" alt="Slide 21" loading="lazy">
+      <img src="assets/portfolio-current-21.png" alt="Slide 21" loading="lazy">
     </section>
     <section class="slide" id="slide-22">
-      <img src="assets/portfolio-slide-22.png" alt="Slide 22" loading="lazy">
+      <img src="assets/portfolio-current-22.png" alt="Slide 22" loading="lazy">
     </section>
     <section class="slide" id="slide-23">
-      <img src="assets/portfolio-slide-23.png" alt="Slide 23" loading="lazy">
+      <img src="assets/portfolio-current-23.png" alt="Slide 23" loading="lazy">
+      <video src="assets/work5-demo.mp4" autoplay muted loop playsinline preload="auto" controls data-playback-rate="2.2" style="--x:0.03979167;--y:0.10981481;--w:0.86479167;--h:0.86518519"></video>
     </section>
     <section class="slide" id="slide-24">
-      <img src="assets/portfolio-slide-24.png" alt="Slide 24" loading="lazy">
+      <img src="assets/portfolio-current-24.png" alt="Slide 24" loading="lazy">
     </section>
     <section class="slide" id="slide-25">
-      <img src="assets/portfolio-slide-25.png" alt="Slide 25" loading="lazy">
+      <img src="assets/portfolio-current-25.png" alt="Slide 25" loading="lazy">
     </section>
     <section class="slide" id="slide-26">
-      <img src="assets/portfolio-slide-26.png" alt="Slide 26" loading="lazy">
+      <img src="assets/portfolio-current-26.png" alt="Slide 26" loading="lazy">
     </section>
     <section class="slide" id="slide-27">
-      <img src="assets/portfolio-slide-27.png" alt="Slide 27" loading="lazy">
+      <img src="assets/portfolio-current-27.png" alt="Slide 27" loading="lazy">
+    </section>
+    <section class="slide" id="slide-28">
+      <img src="assets/portfolio-current-28.png" alt="Slide 28" loading="lazy">
+    </section>
+    <section class="slide" id="slide-29">
+      <img src="assets/portfolio-current-29.png" alt="Slide 29" loading="lazy">
+    </section>
+    <section class="slide" id="slide-30">
+      <img src="assets/portfolio-current-30.png" alt="Slide 30" loading="lazy">
     </section>
   </main>
   <script>

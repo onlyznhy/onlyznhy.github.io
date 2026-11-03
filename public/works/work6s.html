@@ -11,30 +11,35 @@ body { font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-s
 .deck { display: grid; gap: 14px; justify-items: center; margin: 0; padding: 16px 18px 20px; width: 100%; }
 .slide { aspect-ratio: 16 / 9; background: #fff; overflow: hidden; position: relative; width: min(92%, calc((100vh - 48px) * 16 / 9)); }
 .slide > img { display: block; height: 100%; object-fit: cover; width: 100%; }
+.slide video, .slide .animated, .hotlink { height: calc(var(--h) * 100%); left: calc(var(--x) * 100%); position: absolute; top: calc(var(--y) * 100%); width: calc(var(--w) * 100%); }
+.slide video, .slide .animated { object-fit: cover; z-index: 2; }
+.slide video { background: #000; }
+.hotlink { z-index: 3; }
+.hotlink:focus-visible { outline: 3px solid #2563eb; outline-offset: -3px; }
   </style>
 </head>
 <body>
   <main class="deck">
     <section class="slide" id="slide-01">
-      <img src="assets/work6-slide-22.png" alt="Slide 1" fetchpriority="high">
+      <img src="assets/work6s-slide-23.png" alt="Slide 1" fetchpriority="high">
     </section>
     <section class="slide" id="slide-02">
-      <img src="assets/work6-slide-23.png" alt="Slide 2" loading="lazy">
+      <img src="assets/work6s-slide-24.png" alt="Slide 2" loading="lazy">
     </section>
     <section class="slide" id="slide-03">
-      <img src="assets/work6-slide-24.png" alt="Slide 3" loading="lazy">
+      <img src="assets/work6s-slide-25.png" alt="Slide 3" loading="lazy">
     </section>
     <section class="slide" id="slide-04">
-      <img src="assets/work6-slide-25.png" alt="Slide 4" loading="lazy">
+      <img src="assets/work6s-slide-26.png" alt="Slide 4" loading="lazy">
     </section>
     <section class="slide" id="slide-05">
-      <img src="assets/work6-slide-26.png" alt="Slide 5" loading="lazy">
+      <img src="assets/work6s-slide-27.png" alt="Slide 5" loading="lazy">
     </section>
     <section class="slide" id="slide-06">
-      <img src="assets/work6-slide-27.png" alt="Slide 6" loading="lazy">
+      <img src="assets/work6s-slide-28.png" alt="Slide 6" loading="lazy">
     </section>
     <section class="slide" id="slide-07">
-      <img src="assets/work6-slide-28.png" alt="Slide 7" loading="lazy">
+      <img src="assets/work6s-slide-29.png" alt="Slide 7" loading="lazy">
     </section>
   </main>
 </body>
