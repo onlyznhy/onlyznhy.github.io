@@ -615,6 +615,7 @@ h3 {
 .project-grid {
   display: grid;
   gap: 18px;
+  grid-auto-rows: 1fr;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   align-items: stretch;
 }
@@ -677,11 +678,15 @@ h3 {
   gap: 12px;
   justify-content: space-between;
   margin-bottom: 56px;
+  width: 100%;
 }
 
 .project-card h3 {
   font-size: clamp(24px, 2.4vw, 34px);
   max-width: 520px;
+  overflow-wrap: anywhere;
+  text-wrap: balance;
+  word-break: keep-all;
 }
 
 .project-open-hint,

@@ -12,6 +12,9 @@ import { isSupabaseConfigured, supabase } from './supabaseClient'
 const WORK_1_URL = '/works/work1.html'
 const WORK_2_URL = '/works/work2.html'
 const WORK_3_URL = '/works/work3.html'
+const WORK_4_URL = '/works/work4.html'
+const WORK_5_1_URL = '/works/work5-1.html'
+const WORK_5_2_URL = '/works/work5-2.html'
 
 const experiences = [
   {
@@ -68,6 +71,42 @@ const projects = [
         kind: 'iframe',
         src: WORK_3_URL,
         title: 'Post-capture'
+      }
+    ]
+  },
+  {
+    type: '作品 4',
+    title: 'OMSflow 订单管理系统',
+    summary: '自动分仓、履约订单台账管理，自动生成海外仓 ERP 发货表。',
+    content: [
+      {
+        kind: 'iframe',
+        src: WORK_4_URL,
+        title: 'OMSflow 订单管理系统'
+      }
+    ]
+  },
+  {
+    type: '作品 5-1',
+    title: '物流自动化查询系统 V1.0',
+    summary: '支持批量单号和 Excel 导入，多浏览器并发查询，自动整理物流状态与查询结果。',
+    content: [
+      {
+        kind: 'iframe',
+        src: WORK_5_1_URL,
+        title: '物流自动化查询系统 V1.0'
+      }
+    ]
+  },
+  {
+    type: '作品 5-2',
+    title: '履约物流监控系统 V2.0',
+    summary: '物流监控看板、履约进度跟踪、异常预警分类，支持物流 API 订阅与定时推送。',
+    content: [
+      {
+        kind: 'iframe',
+        src: WORK_5_2_URL,
+        title: '履约物流监控系统 V2.0'
       }
     ]
   }
@@ -346,7 +385,7 @@ function App() {
         <div className="project-grid">
           {projects.map((project, index) => (
             <button
-              className={`project-card ${['cyan', 'amber', 'blue'][index]}`}
+              className={`project-card ${['cyan', 'amber', 'blue'][index % 3]}`}
               type="button"
               key={project.title}
               onClick={() => {
@@ -357,7 +396,7 @@ function App() {
             >
               <div className="project-topline">
                 <span>{project.type}</span>
-                <span>作品 {index + 1}</span>
+                <span>{project.type}</span>
               </div>
               <h3>{project.title}</h3>
               <p>{project.summary}</p>
